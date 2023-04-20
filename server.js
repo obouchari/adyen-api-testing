@@ -79,6 +79,9 @@ app.post("/api/sessions", async (req, res) => {
       reference: orderRef, // required
       merchantAccount: process.env.ADYEN_MERCHANT_ACCOUNT, // required
       returnUrl: `${determineHostUrl(req)}/redirect?orderRef=${orderRef}`, // required for 3ds2 redirect flow
+      authenticationData: {
+        attemptAuthentication: "always",
+      }
     });
 
     // save transaction in memory
